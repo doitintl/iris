@@ -133,7 +133,7 @@ class BigTable(Plugin):
     def tag_one(self, gcp_object, project_id):
         labels = dict()
         gcp_object['project_id'] = project_id
-        labels['labels'] = self.gen_labels(gcp_object)
+        labels['labels'] = self.gen_labels(gcp_object, project_id)
         gcp_object.pop('project_id', None)
         if 'labels' in gcp_object:
             for key, val in labels['labels'].items():

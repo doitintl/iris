@@ -176,7 +176,7 @@ class Gce(Plugin):
             pass
         labels = dict(
             [('labelFingerprint', gcp_object.get('labelFingerprint', ''))])
-        labels['labels'] = self.gen_labels(gcp_object)
+        labels['labels'] = self.gen_labels(gcp_object, project_id)
         for k, v in org_labels.items():
             labels['labels'][k] = v
         try:

@@ -14,5 +14,6 @@
     "GceDisks",
     "GceSnapshots"
 
-  ]
+  ],
+  "project_inheriting": true
 }

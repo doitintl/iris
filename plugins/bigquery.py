@@ -133,7 +133,7 @@ class BigQuery(Plugin):
                 return
             if 'datasets' in response:
                 for dataset in response['datasets']:
-                    self.tag_one_dataset(dataset)
+                    self.tag_one_dataset(dataset, project_id)
                     table_page_token = None
                     table_more_results = True
                     while table_more_results:
@@ -144,7 +144,7 @@ class BigQuery(Plugin):
                         if 'tables' in tresponse:
                             for t in tresponse['tables']:
                                 t['location'] = dataset['location']
-                                self.tag_one_table(t)
+                                self.tag_one_table(t, project_id)
                         if 'nextPageToken' in tresponse:
                             table_page_token = tresponse['nextPageToken']
                             table_more_results = True
@@ -158,9 +158,9 @@ class BigQuery(Plugin):
 
     @sleep_and_retry
     @limits(calls=35, period=60)
-    def tag_one_dataset(self, gcp_object):
+    def tag_one_dataset(self, gcp_object, project_id):
         labels = dict()
-        labels['labels'] = self.gen_labels(gcp_object)
+        labels['labels'] = self.gen_labels(gcp_object, project_id)
         try:
             self.bigquery.datasets().patch(
                 projectId=gcp_object['datasetReference']['projectId'],
@@ -173,9 +173,9 @@ class BigQuery(Plugin):
 
     @sleep_and_retry
     @limits(calls=35, period=60)
-    def tag_one_table(self, gcp_object):
+    def tag_one_table(self, gcp_object, project_id):
         labels = dict()
-        labels['labels'] = self.gen_labels(gcp_object)
+        labels['labels'] = self.gen_labels(gcp_object, project_id)
         try:
             self.batch.add(self.bigquery.tables().patch(
                 projectId=gcp_object['tableReference']['projectId'],
@@ -196,6 +196,6 @@ class BigQuery(Plugin):
             if gcp_object['kind'] == "bigquery#dataset":
                 self.tag_one_dataset(gcp_object)
             else:
-                self.tag_one_table(gcp_object)
+                self.tag_one_table(gcp_object, project_id)
         except Exception as e:
             logging.error(e)

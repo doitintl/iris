@@ -88,5 +88,14 @@ def get_ondemand():
     return config['on_demand']
 
 
+def project_inheriting():
+    with open('config.json', 'r') as config_file:
+        config = json.load(config_file)
+    if 'project_inheriting' in config:
+        return config['project_inheriting']
+    else:
+        return False
+
+
 def get_prfeix():
     return 'iris'

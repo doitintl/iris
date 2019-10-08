@@ -25,6 +25,15 @@ def get_all_projetcs():
     return projects
 
 
+def get_project_labels(project_id):
+    request = service.projects().get(projectId=project_id)
+    response = request.execute()
+    if 'labels' in response:
+        return response['labels']
+    else:
+        return {}
+
+
 def get_name_tag():
     return "iris_name"
 

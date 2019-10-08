@@ -4,7 +4,7 @@
 
 import logging
 
-from utils import utils
+from utils import utils, gcp
 
 
 class PluginMount(type):
@@ -64,8 +64,10 @@ class Plugin(object):
         self.on_demand = on_demand
 
 
-    def gen_labels(self, gcp_object):
+    def gen_labels(self, gcp_object, project_id):
         labels = {}
+        if utils.project_inheriting():
+            labels = gcp.get_project_labels(project_id)
         for tag in self.tags:
             f = "_get_" + tag
             if f in dir(self):

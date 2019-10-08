@@ -101,7 +101,7 @@ class CloudSql(Plugin):
 
     def tag_one(self, gcp_object, project_id):
         labels = dict()
-        labels['labels'] = self.gen_labels(gcp_object)
+        labels['labels'] = self.gen_labels(gcp_object, project_id)
         try:
             database_instance_body = dict()
             database_instance_body['settings'] = {}

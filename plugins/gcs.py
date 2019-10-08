@@ -97,7 +97,7 @@ class Gcs(Plugin):
 
     def tag_one(self, gcp_object, project_id):
         labels = dict()
-        labels['labels'] = self.gen_labels(gcp_object)
+        labels['labels'] = self.gen_labels(gcp_object, project_id)
         try:
             self.batch.add(self.storage.buckets().patch(
                 bucket=gcp_object['name'], body=labels),
