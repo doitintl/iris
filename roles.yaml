@@ -34,6 +34,10 @@ includedPermissions:
 - compute.snapshots.list
 - compute.snapshots.get
 - compute.snapshots.setLabels
+- pubsub.topics.get
+- pubsub.topics.list
+- pubsub.topics.update
+- pubsub.topics.updateTag
 - resourcemanager.folders.get
 - resourcemanager.folders.list
 - resourcemanager.organizations.get

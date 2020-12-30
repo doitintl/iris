@@ -12,7 +12,8 @@
     "Gcs",
     "BigTable",
     "GceDisks",
-    "GceSnapshots"
-
+    "GceSnapshots",
+    "CloudSql",
+    "CloudPubSub"
   ]
 }

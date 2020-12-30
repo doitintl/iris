@@ -6,7 +6,7 @@ In Greek mythology, Iris (/ˈaɪrɪs/; Greek: Ἶρις) is the personification 
 
 Iris helps to automatically assign labels to Google Cloud resources for better manageability and billing reporting. Each resource in Google Cloud will get an automatically generated label in a form of [iris_name:name], [iris_region:region] and finally [iris_zone:zone]. For example if you have a Google Compute Engine instance named `nginx`, Iris will automatically label this instance with [iris_name:nginx], [iris_region:us-central1] and [iris_zone:us-central1-a].
 
-Iris will also label short lived Google Compute Engine instances such as preemtible instances or instances managed by Instance Group Manager by listening to Stackdriver Logs and putting required labels on-demand.
+Iris will also label short-lived Google Compute Engine instances such as preemptible instances or instances managed by Instance Group Manager by listening to Stackdriver Logs and putting required labels on-demand.
 
 **NOTE**: Iris will try tagging resources in _all_ project across your GCP organization. Not just the project it will be deployed into.
 
@@ -18,10 +18,11 @@ Iris is extensible through plugins and new Google Cloud products may be supporte
 * Google Cloud Storage
 * Google BigQuery
 * Google Bigtable
+* Google Cloud Pub/Sub
 
 ## Installation
 
-We recommend to deploy Iris in a [separate](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project) project within your Google Cloud organization.
+We recommend deploying Iris in a [separate](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project) project within your Google Cloud organization.
 To deploy, you will need to have *Owner* role on Iris project and the following roles in your *GCP Organization*:
 
  * _Organization Role Administrator_ - to create a custom IAM role for Iris that allows setting labels on the services
