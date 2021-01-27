@@ -1,4 +1,7 @@
 # Iris
+## Version Note, 2021-1-27
+
+If you're ready to move off of the long-since obsolete Python 2 App Engine, [Iris3](https://github.com/doitintl/iris3) is now available. Iris3 not only modernizes your infrastructure, but adds many features and fixes many bugs. See the [README](https://github.com/doitintl/iris3) for details.
 
 [Blog Post](https://blog.doit-intl.com/auto-tagging-google-cloud-resources-6647cc7477c5)
 
